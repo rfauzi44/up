@@ -70,6 +70,9 @@ func AddMember(username, gender, skintype, skincolor string) (libs.Response, err
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]string{
+		"last_inserted_id": id_member,
+	}
 
 	return res, nil
 }
@@ -86,13 +89,21 @@ func UpdateMember(id_member, username, gender, skintype, skincolor string) (libs
 		return res, err
 	}
 
-	_, err = stmt.Exec(username, gender, skintype, skincolor, id_member)
+	result, err := stmt.Exec(username, gender, skintype, skincolor, id_member)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
 	if err != nil {
 		return res, err
 	}
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_affected": rowsAffected,
+	}
 
 	return res, nil
 }
@@ -109,13 +120,21 @@ func DeleteMember(id_member string) (libs.Response, error) {
 		return res, err
 	}
 
-	_, err = stmt.Exec(id_member)
+	result, err := stmt.Exec(id_member)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
 	if err != nil {
 		return res, err
 	}
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_affected": rowsAffected,
+	}
 
 	return res, nil
 }

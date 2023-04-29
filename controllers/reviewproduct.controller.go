@@ -20,3 +20,13 @@ func AddReviewProduct(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, result)
 }
+
+func GetAllReview(c echo.Context) error {
+	result, err := models.GetAllReview()
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, result)
+
+}

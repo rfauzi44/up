@@ -13,6 +13,7 @@ type ReviewProduct struct {
 	IDProduct  string `json:"id_product"`
 	IDMember   string `json:"id_member"`
 	DescReview string `json:"desc_review"`
+	LikeCount  int    `json:"like_count"`
 }
 
 func AddReviewProduct(id_product, id_member, desc_review string) (libs.Response, error) {
@@ -37,6 +38,41 @@ func AddReviewProduct(id_product, id_member, desc_review string) (libs.Response,
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]string{
+		"last_inserted_id": id_review,
+	}
 
 	return res, nil
+}
+
+func GetAllReview() (libs.Response, error) {
+	var obj ReviewProduct
+	var objArr []ReviewProduct
+	var res libs.Response
+
+	conn := db.Connect()
+
+	sqlStatement := "SELECT * FROM review_product"
+
+	rows, err := conn.Query(sqlStatement)
+
+	if err != nil {
+		return res, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		err = rows.Scan(&obj.IDReview, &obj.IDProduct, &obj.IDMember, &obj.DescReview, &obj.LikeCount)
+		if err != nil {
+			return res, err
+		}
+
+		objArr = append(objArr, obj)
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = objArr
+	return res, nil
+
 }

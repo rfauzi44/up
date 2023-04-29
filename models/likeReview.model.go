@@ -1,9 +1,10 @@
 package models
 
 import (
+	"net/http"
+
 	"github.com/rfauzi44/up-echo/db"
 	"github.com/rfauzi44/up-echo/libs"
-	"net/http"
 )
 
 type LikeReview struct {
@@ -23,13 +24,21 @@ func AddLikeReview(id_review, id_member string) (libs.Response, error) {
 		return res, err
 	}
 
-	_, err = stmt.Exec(id_review, id_member)
+	result, err := stmt.Exec(id_review, id_member)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
 	if err != nil {
 		return res, err
 	}
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_affected": rowsAffected,
+	}
 
 	return res, nil
 }
@@ -46,13 +55,20 @@ func DislikeReview(id_review, id_member string) (libs.Response, error) {
 		return res, err
 	}
 
-	_, err = stmt.Exec(id_review, id_member)
+	result, err := stmt.Exec(id_review, id_member)
+	if err != nil {
+		return res, err
+	}
+	rowsAffected, err := result.RowsAffected()
 	if err != nil {
 		return res, err
 	}
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_affected": rowsAffected,
+	}
 
 	return res, nil
 }

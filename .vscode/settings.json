@@ -18,5 +18,19 @@
         "titleBar.inactiveBackground": "#d6ae0199",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#D6AE01"
+    "peacock.color": "#D6AE01",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "mysql",
+            "database": "up",
+            "username": "root"
+        }
+    ]
 }

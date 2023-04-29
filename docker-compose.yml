@@ -1,0 +1,61 @@
+services:
+  database:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DBNAME}
+    ports:
+      - 3307:3306
+    networks:
+      - up-echo-networks
+
+      
+  backend-api:
+    image: rfauzi/up-echo:latest
+    depends_on:
+      - database
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    networks:
+      - up-echo-networks
+
+networks:
+  up-echo-networks:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
