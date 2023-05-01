@@ -16,7 +16,7 @@ API with Echo and MySQL
 git clone https://github.com/rfauzi44/up-echo.git
 ```
 
-2. Setup MySQL Database and restore dump from db foler
+2. Setup MySQL Database and restore dump from db folder
 
 3. Create .env file (copy and set from .env-example)
 
