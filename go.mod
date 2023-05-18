@@ -1,4 +1,4 @@
-module github.com/rfauzi44/up-echo
+module github.com/rfauzi44/up
 
 go 1.20
 

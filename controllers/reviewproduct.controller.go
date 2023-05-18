@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rfauzi44/up-echo/models"
+	"github.com/rfauzi44/up/models"
 )
 
 func AddReviewProduct(c echo.Context) error {

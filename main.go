@@ -4,8 +4,8 @@ import (
 	"os"
 
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/rfauzi44/up-echo/db"
-	"github.com/rfauzi44/up-echo/routers"
+	"github.com/rfauzi44/up/db"
+	"github.com/rfauzi44/up/routers"
 )
 
 func main() {

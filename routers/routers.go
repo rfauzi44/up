@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rfauzi44/up-echo/controllers"
+	"github.com/rfauzi44/up/controllers"
 )
 
 func New() *echo.Echo {

@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/google/uuid"
-	"github.com/rfauzi44/up-echo/db"
-	"github.com/rfauzi44/up-echo/libs"
+	"github.com/rfauzi44/up/db"
+	"github.com/rfauzi44/up/libs"
 )
 
 type Member struct {
